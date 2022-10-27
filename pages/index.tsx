@@ -3,6 +3,9 @@ import Layout from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import {getSortedPostsData} from '../lib/posts'
 import {siteTitle} from "../components/layout";
+import Link from "next/link";
+import MyLink from "../components/myLink";
+
 
 export default function Home({allPostsData}) {
     const subSiteTitle = 'Next.js with Redux'
@@ -19,11 +22,15 @@ export default function Home({allPostsData}) {
                     <ul>
                         {allPostsData.map(({id, date, title}) => (
                             <li key={id}>
-                                {title}
-                                <br/>
-                                {id}
-                                <br/>
-                                {date}
+                                <Link href={`/posts/${id}`} passHref legacyBehavior>
+                                    <MyLink>
+                                        {title}
+                                        <br/>
+                                        {id}
+                                        <br/>
+                                        {date}
+                                    </MyLink>
+                                </Link>
                             </li>
                         ))}
                     </ul>

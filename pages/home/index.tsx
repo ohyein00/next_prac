@@ -16,7 +16,13 @@ export default function Home(props) {
         <>
             <div className="container">
                 <div>
-                    <span>{text} 적용 완료</span>
+                    <span>{text} 적용</span>
+                    <span>{text} 적용2</span>
+                    <span>{text} 적용3</span>
+                    <span>{text} 적용4</span>
+                    <span>{text} 적용5</span>
+                    <span>rebase test8</span>
+                    <span>rebase test9</span>
                 </div>
             </div>
         </>

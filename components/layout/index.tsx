@@ -3,6 +3,8 @@ import Image from 'next/image'
 import styles from './layout.module.css'
 import utilStyles from '../../styles/utils.module.css'
 import Link from 'next/link'
+import {ReactNode} from "react";
+import myLink from "../myLink";
 
 const name = 'Yein'
 export const siteTitle = `${name}'s Git Scrap Book`
@@ -15,12 +17,12 @@ export const siteTitle = `${name}'s Git Scrap Book`
  *  head Hoc 라는 구조로 각 페이지에 맞는 meta 구조를 생성할 수 있음
  *  참고 블로그글 : https://velog.io/@cyranocoding/NEXT-HEAD-%EC%97%90-%EB%8C%80%ED%95%98%EC%97%AC
  *
- *  하지만 동적으로 구성해야 하는 경우엔 getInitialProps를 이용해 돔이 구성되기 전 값을 받아 static하게 내보내줘야함
+ *  하지만 동적으로 구성해야 하는 경우엔 getInitialProps를 이용해 돔이 구성되기 전 값을 받아 static하게 내보내줘야함 ---> nextv9 이후 getStaticProps, getStaticPaths, getServerSideProps로 바뀜
  *  https://kyounghwan01.github.io/blog/React/next/dynamic-meta/
  */
 
 
-export default function Layout({ children, home }) {
+export default function Layout({ children, home }:{children:ReactNode,home?:boolean}) {
     return (
         <div className={styles.container}>
             <Head>
@@ -42,7 +44,7 @@ export default function Layout({ children, home }) {
             {!home && (
                 <div className={styles.backToHome}>
                     <Link href="/">
-                        <a>← Back to home</a>
+                        ← Back to home
                     </Link>
                 </div>
             )}
