@@ -16,7 +16,7 @@ export default function Home(props) {
         <>
             <div className="container">
                 <div>
-                    <span>{text} 적용 완료</span>
+                    <span>{text} 적용</span>
                 </div>
             </div>
         </>
