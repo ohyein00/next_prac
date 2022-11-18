@@ -1,13 +1,13 @@
-import Head from 'next/head'
 import Layout from '../components/layout'
-import utilStyles from '../styles/utils.module.css'
 import {getSortedPostsData} from '../lib/posts'
 import {siteTitle} from "../components/layout";
 import Link from "next/link";
 import MyLink from "../components/myLink";
 
 
-export default function Home({allPostsData}) {
+export default function Home() {
+
+    const allPostsData = getSortedPostsData()
     const subSiteTitle = 'Next.js with Redux'
     const siteIntroduce = '목표 : next.js랑 redux로 깃 이슈 가져오는 스크랩북 만들기'
     const history = '20221026 ) next.js tutorial chp.Dynamic Routes'
@@ -22,13 +22,15 @@ export default function Home({allPostsData}) {
                     <ul>
                         {allPostsData.map(({id, date, title}) => (
                             <li key={id}>
-                                <Link href={`/posts/${id}`} passHref legacyBehavior>
+                                <Link href={`/post/${id}`} passHref legacyBehavior>
                                     <MyLink>
-                                        {title}
-                                        <br/>
-                                        {id}
-                                        <br/>
-                                        {date}
+                                        <>
+                                            {title}
+                                            <br/>
+                                            {id}
+                                            <br/>
+                                            {date}
+                                        </>
                                     </MyLink>
                                 </Link>
                             </li>
@@ -46,13 +48,4 @@ export default function Home({allPostsData}) {
             </Layout>
         </>
     )
-}
-
-export async function getStaticProps() {
-    const allPostsData = getSortedPostsData()
-    return {
-        props: {
-            allPostsData
-        }
-    }
 }

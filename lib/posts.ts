@@ -1,11 +1,14 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { remark } from 'remark';
+import {remark} from 'remark';
 import html from 'remark-html';
+
+
+type PostDataResponseType = { id: string; date?:Date; title?:string; contentHtml?: string; }
 const postsDirectory = path.join(process.cwd(), 'posts')
 
-export function getSortedPostsData() {
+export function getSortedPostsData():PostDataResponseType[]{
     // Get file names under /posts
     const fileNames = fs.readdirSync(postsDirectory)
     const allPostsData = fileNames.map(fileName => {
@@ -46,7 +49,7 @@ export function getAllPostIds() {
     })
 }
 
-export async function getPostData(id) {
+export async function getPostData(id: string):Promise<PostDataResponseType>{
     const fullPath = path.join(postsDirectory, `${id}.md`);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
 
