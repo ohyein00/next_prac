@@ -1,5 +1,6 @@
 
 import React, {LegacyRef, ReactNode} from "react";
+import Link from "next/link";
 // `onClick`, `href`, and `ref` need to be passed to the DOM element
 // for proper handling
 
@@ -16,11 +17,10 @@ interface MyLinkProps {
     href?: string;
 }
 
-const MyLink = React.forwardRef((props:MyLinkProps,ref:LegacyRef<HTMLAnchorElement>)=>{
+export default function MyLink(props:MyLinkProps){
     return (
-        <a href={props.href} onClick={props.onClick} ref={ref}>
+        <Link href={props.href} onClick={props.onClick}>
             {props.children}
-        </a>
+        </Link>
     )
-})
-export default MyLink
+}

@@ -3,8 +3,8 @@ import {getSortedPostsData} from '../lib/posts'
 import {siteTitle} from "../components/layout";
 import Link from "next/link";
 import MyLink from "../components/myLink";
-
-
+import {useState} from "react";
+import Count from "../components/count";
 export default function Home() {
 
     const allPostsData = getSortedPostsData()
@@ -19,6 +19,10 @@ export default function Home() {
                 <hr/>
                 <section>
                     <h2>Issue List</h2>
+                    <div>
+                       <Count/>
+                       <Count/>
+                    </div>
                     <ul>
                         {allPostsData.map(({id, date, title}) => (
                             <li key={id}>
