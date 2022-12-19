@@ -4,21 +4,28 @@ import Head from "next/head";
 import Date from "../../../components/date";
 import utilStyles from '../../../styles/utils.module.css'
 
-export default async function Post({params}) {
+async function getPosts(id) {
+    const res = await fetch(`http://localhost:3000/api/posts/${id}`)
+    return res.json()
+}
 
-    const paths = getAllPostIds()
-    const postData = await getPostData(params.id);
+export default async function Post({ params }) {
+    const getPostsData = getPosts(params.id)
+    const postsData = await getPostsData
+    console.log()
     return (
+        `${postsData.data.title}`
+        /*
         <Layout>
             <Head>
-                <title>{postData.title}</title>
-                <meta property="og:title" content={postData.title}/>
+                <title>{title}</title>
+                <meta property="og:title" content={title}/>
             </Head>
-            <h3 className={utilStyles.headingXl}>{postData.title}</h3>
-            <p>{postData.id} | <Date dateString={postData.date} /></p>
+            <h3 className={utilStyles.headingXl}>{title}</h3>
+            <p>{id} | <Date dateString={date}/></p>
             <hr/>
-            <div dangerouslySetInnerHTML={{__html: postData.contentHtml}}/>
+            <div dangerouslySetInnerHTML={{__html: contentHtml}}/>
 
-        </Layout>
+        </Layout>*/
     )
 }
